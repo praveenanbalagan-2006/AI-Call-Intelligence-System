@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Call Intelligence Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .progress-bar {
+            transition: width 0.3s ease-in-out;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+            to { box-shadow: 0 0 30px rgba(99, 102, 241, 0.6); }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Container -->
+    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-6xl w-full min-h-[600px]">
+        
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-full mb-4 pulse-glow">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-white mb-2">AI Call Intelligence Platform</h1>
+            <p class="text-white/80 text-lg">Advanced audio analysis with real-time transcription and sentiment insights</p>
+        </div>
+
+        <!-- Upload Section -->
+        <div id="upload-section" class="mb-8">
+            <form id="upload-form" class="flex flex-col items-center gap-6" enctype="multipart/form-data">
+                
+                <!-- File Drop Zone -->
+                <div class="w-full max-w-2xl">
+                    <div id="drop-zone" class="relative border-2 border-dashed border-white/30 rounded-2xl p-12 text-center hover:border-white/50 transition-all duration-300 cursor-pointer glass-effect card-hover">
+                        <input type="file" id="audio-file" name="audio_file" accept="audio/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                        
+                        <div id="drop-content" class="flex flex-col items-center">
+                            <svg class="w-16 h-16 text-white/60 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                            <h3 class="text-xl font-semibold text-white mb-2">Drop your audio file here</h3>
+                            <p class="text-white/70 mb-4">or click to browse</p>
+                            <p class="text-sm text-white/50">Supports MP3, WAV, OGG • Max 20MB</p>
+                        </div>
+                        
+                        <div id="file-selected" class="hidden">
+                            <svg class="w-12 h-12 text-green-400 mb-3 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <p id="selected-filename" class="text-white font-medium mb-2"></p>
+                            <p class="text-white/60 text-sm">Ready to analyze</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analyze Button -->
+                <button type="submit" id="submit-btn" class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-4 px-12 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                    <span id="btn-text">Start AI Analysis</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Progress Section -->
+        <div id="progress-section" class="hidden mb-8">
+            <div class="glass-effect rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-white">Processing Audio</h3>
+                    <span id="progress-percentage" class="text-white/80 font-medium">0%</span>
+                </div>
+                
+                <div class="w-full bg-white/20 rounded-full h-2 mb-4">
+                    <div id="progress-bar" class="progress-bar bg-gradient-to-r from-indigo-400 to-purple-500 h-2 rounded-full" style="width: 0%"></div>
+                </div>
+                
+                <div class="flex items-center">
+                    <svg id="progress-spinner" class="animate-spin h-5 w-5 text-white mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p id="progress-text" class="text-white/90">Initializing analysis...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="result-container" class="hidden space-y-6 fade-in">
+            
+            <!-- Classification Result -->
+            <div class="glass-effect rounded-2xl p-6 card-hover">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-white flex items-center">
+                        <svg class="w-6 h-6 mr-3 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        Call Classification
+                    </h2>
+                    
+                    <div id="confidence-badge" class="px-4 py-2 rounded-full text-sm font-medium">
+                        <span id="confidence-text"></span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <div id="classification-result" class="text-3xl font-bold mb-2"></div>
+                    <p class="text-white/70 text-sm">Based on AI model analysis</p>
+                </div>
+                
+                <div class="bg-black/20 rounded-xl p-4">
+                    <h4 class="text-white/80 font-medium mb-2 flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Key Evidence
+                    </h4>
+                    <p id="classification-justification" class="text-white/90 italic"></p>
+                </div>
+            </div>
+
+            <!-- Transcription Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Original Transcription -->
+                <div class="glass-effect rounded-2xl p-6 card-hover">
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V1a1 1 0 011-1h2a1 1 0 011 1v16l-3.5-2-3.5 2V1a1 1 0 011-1h2a1 1 0 011 1v3"/>
+                        </svg>
+                        Original Transcription
+                    </h3>
+                    <div id="transcription-text" class="bg-black/20 rounded-xl p-4 text-white/90 text-sm leading-relaxed max-h-40 overflow-y-auto"></div>
+                </div>
+                
+                <!-- English Translation -->
+                <div class="glass-effect rounded-2xl p-6 card-hover">
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                        </svg>
+                        English Translation
+                    </h3>
+                    <div id="translation-text" class="bg-black/20 rounded-xl p-4 text-white/90 text-sm leading-relaxed max-h-40 overflow-y-auto"></div>
+                </div>
+            </div>
+
+            <!-- Sentiment Analysis -->
+            <div class="glass-effect rounded-2xl p-6 card-hover">
+                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Sentiment & Key Insights
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-black/20 rounded-lg p-4 text-center">
+                        <p class="text-white/60 text-sm mb-1">Sentiment Score</p>
+                        <p id="sentiment-score" class="text-2xl font-bold text-white"></p>
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 text-center">
+                        <p class="text-white/60 text-sm mb-1">Overall Sentiment</p>
+                        <p id="sentiment-summary" class="text-lg font-semibold text-white capitalize"></p>
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 text-center">
+                        <p class="text-white/60 text-sm mb-1">Action Required</p>
+                        <p id="action-indicator" class="text-lg font-semibold text-white">Yes</p>
+                    </div>
+                </div>
+                
+                <div class="bg-black/20 rounded-lg p-4">
+                    <p class="text-white/70 text-sm mb-2">Recommended Action:</p>
+                    <p id="action-summary" class="text-white/90"></p>
+                </div>
+            </div>
+
+            <!-- Key Phrases Analysis -->
+            <div class="glass-effect rounded-2xl p-6 card-hover">
+                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                    </svg>
+                    Phrase Analysis
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Technical Phrases -->
+                    <div>
+                        <div class="flex items-center mb-3">
+                            <div class="w-3 h-3 bg-red-400 rounded-full mr-2"></div>
+                            <h4 class="font-medium text-white">Technical Phrases</h4>
+                        </div>
+                        <div id="technical-phrases-container" class="bg-black/20 rounded-lg p-4 min-h-[100px]">
+                            <div id="technical-phrases" class="space-y-2"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Non-Technical Phrases -->
+                    <div>
+                        <div class="flex items-center mb-3">
+                            <div class="w-3 h-3 bg-green-400 rounded-full mr-2"></div>
+                            <h4 class="font-medium text-white">Non-Technical Phrases</h4>
+                        </div>
+                        <div id="non-technical-phrases-container" class="bg-black/20 rounded-lg p-4 min-h-[100px]">
+                            <div id="non-technical-phrases" class="space-y-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Button -->
+            <div class="text-center pt-4">
+                <button id="download-btn" class="bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Download Analysis Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-container" class="hidden">
+            <div class="bg-red-500/20 border border-red-500/30 rounded-2xl p-6 text-center">
+                <svg class="w-12 h-12 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.996-.833-2.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                </svg>
+                <h3 class="text-xl font-semibold text-white mb-2">Processing Error</h3>
+                <p id="error-message" class="text-white/80"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentAnalysisData = null;
+
+        // File handling
+        const audioFile = document.getElementById('audio-file');
+        const dropZone = document.getElementById('drop-zone');
+        const dropContent = document.getElementById('drop-content');
+        const fileSelected = document.getElementById('file-selected');
+        const selectedFilename = document.getElementById('selected-filename');
+
+        // Progress tracking
+        const progressSteps = [
+            { text: "Initializing analysis...", progress: 10 },
+            { text: "Transcribing audio...", progress: 35 },
+            { text: "Running classification model...", progress: 65 },
+            { text: "Generating insights...", progress: 90 },
+            { text: "Finalizing results...", progress: 100 }
+        ];
+
+        audioFile.addEventListener('change', handleFileSelect);
+        dropZone.addEventListener('dragover', handleDragOver);
+        dropZone.addEventListener('drop', handleDrop);
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                displaySelectedFile(file);
+            }
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            dropZone.classList.add('border-white/70');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            dropZone.classList.remove('border-white/70');
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                audioFile.files = e.dataTransfer.files;
+                displaySelectedFile(file);
+            }
+        }
+
+        function displaySelectedFile(file) {
+            selectedFilename.textContent = file.name;
+            dropContent.classList.add('hidden');
+            fileSelected.classList.remove('hidden');
+        }
+
+        function updateProgress(stepIndex) {
+            const step = progressSteps[stepIndex];
+            document.getElementById('progress-text').textContent = step.text;
+            document.getElementById('progress-bar').style.width = step.progress + '%';
+            document.getElementById('progress-percentage').textContent = step.progress + '%';
+        }
+
+        function showError(message) {
+            document.getElementById('progress-section').classList.add('hidden');
+            document.getElementById('error-message').textContent = message;
+            document.getElementById('error-container').classList.remove('hidden');
+            document.getElementById('submit-btn').disabled = false;
+            document.getElementById('btn-text').textContent = 'Start AI Analysis';
+        }
+
+        function displayResults(data) {
+            const record = data.structured_record;
+            
+            // Classification
+            const classification = record.model_classification;
+            const classificationEl = document.getElementById('classification-result');
+            
+            if (classification === 'Technical') {
+                classificationEl.textContent = 'Technical Call';
+                classificationEl.className = 'text-3xl font-bold mb-2 text-red-400';
+            } else {
+                classificationEl.textContent = 'Non-Technical Call';
+                classificationEl.className = 'text-3xl font-bold mb-2 text-green-400';
+            }
+
+            // Confidence badge
+            const techScore = record.MODEL_CONFIDENCE_SCORES?.Technical || 0;
+            const nonTechScore = record.MODEL_CONFIDENCE_SCORES?.['Non-Technical'] || 0;
+            const maxScore = Math.max(techScore, nonTechScore);
+            
+            const confidenceBadge = document.getElementById('confidence-badge');
+            const confidenceText = document.getElementById('confidence-text');
+            
+            if (maxScore > 0.8) {
+                confidenceBadge.className = 'px-4 py-2 rounded-full text-sm font-medium bg-green-500/30 text-green-300';
+                confidenceText.textContent = 'High Confidence';
+            } else if (maxScore > 0.6) {
+                confidenceBadge.className = 'px-4 py-2 rounded-full text-sm font-medium bg-yellow-500/30 text-yellow-300';
+                confidenceText.textContent = 'Medium Confidence';
+            } else {
+                confidenceBadge.className = 'px-4 py-2 rounded-full text-sm font-medium bg-red-500/30 text-red-300';
+                confidenceText.textContent = 'Low Confidence';
+            }
+
+            // Other data
+            document.getElementById('classification-justification').textContent = record.CLASSIFICATION_JUSTIFICATION || 'No justification available';
+            document.getElementById('transcription-text').textContent = data.transcription_original || 'N/A';
+            document.getElementById('translation-text').textContent = data.translation || 'N/A';
+            
+            // Sentiment
+            const sentimentScore = record.sentiment_score || 0;
+            document.getElementById('sentiment-score').textContent = sentimentScore.toFixed(2);
+            document.getElementById('sentiment-summary').textContent = record.sentiment_summary || 'neutral';
+            document.getElementById('action-summary').textContent = record.ACTION_SUMMARY || 'No specific action required';
+
+            // Phrases
+            displayPhrases('technical-phrases', record.TECHNICAL_PHRASES || [], 'red');
+            displayPhrases('non-technical-phrases', record.NON_TECHNICAL_PHRASES || [], 'green');
+            
+            currentAnalysisData = record;
+            document.getElementById('progress-section').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+        }
+
+        function displayPhrases(containerId, phrases, colorClass) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            if (phrases.length === 0) {
+                container.innerHTML = '<p class="text-white/50 text-sm">No specific phrases identified</p>';
+                return;
+            }
+            
+            phrases.forEach(phrase => {
+                const phraseEl = document.createElement('div');
+                phraseEl.className = `inline-block bg-${colorClass}-500/20 text-${colorClass}-300 px-3 py-1 rounded-full text-sm mr-2 mb-2`;
+                phraseEl.textContent = phrase;
+                container.appendChild(phraseEl);
+            });
+        }
+
+        function downloadAnalysis() {
+            if (!currentAnalysisData) return;
+            
+            const jsonString = JSON.stringify([currentAnalysisData], null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const a = document.createElement('a');
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+            a.download = `call_analysis_${currentAnalysisData.call_id}_${timestamp}.json`;
+            a.href = URL.createObjectURL(blob);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(a.href);
+        }
+
+        // Main form submission
+        document.getElementById('upload-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const file = audioFile.files[0];
+            if (!file) {
+                showError('Please select an audio file to upload.');
+                return;
+            }
+            
+            // Reset UI
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('error-container').classList.add('hidden');
+            document.getElementById('progress-section').classList.remove('hidden');
+            document.getElementById('submit-btn').disabled = true;
+            document.getElementById('btn-text').textContent = 'Processing...';
+            
+            // Simulate progress
+            let currentStep = 0;
+            updateProgress(currentStep);
+            
+            const progressInterval = setInterval(() => {
+                currentStep++;
+                if (currentStep < progressSteps.length - 1) {
+                    updateProgress(currentStep);
+                }
+            }, 2000);
+            
+            const formData = new FormData();
+            formData.append('audio_file', file);
+            
+            try {
+                const response = await fetch('/process-audio', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                clearInterval(progressInterval);
+                
+                if (response.ok) {
+                    updateProgress(progressSteps.length - 1);
+                    setTimeout(() => displayResults(result), 500);
+                } else {
+                    showError(result.error || 'An unknown error occurred on the server.');
+                }
+            } catch (error) {
+                clearInterval(progressInterval);
+                showError('An unexpected network error occurred. Please try again.');
+            } finally {
+                setTimeout(() => {
+                    document.getElementById('submit-btn').disabled = false;
+                    document.getElementById('btn-text').textContent = 'Start AI Analysis';
+                }, 500);
+            }
+        });
+
+        document.getElementById('download-btn').addEventListener('click', downloadAnalysis);
+    </script>
+</body>
+</html>

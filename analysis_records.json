@@ -1,0 +1,325 @@
+[
+  {
+    "call_id": "call_20250927_053348_a2b4",
+    "transcription": "\u0bb5\u0bc6\u0ba3\u0bcd\u0b9f\u0bbe\u0bb0\u0bcd \u0b85\u0bb5\u0bb0\u0bcd\u0b95\u0bb3\u0bc1\u0b95\u0bcd\u0b95\u0bc1 \u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd. \u0ba8\u0bbe\u0ba9\u0bcd \u0baa\u0bb0\u0bae\u0bc7\u0bb7\u0bcd \u0baa\u0bc7\u0b9a\u0bc1\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd. \u0b9a\u0bc7\u0bb2\u0bae\u0bcd \u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 \u0b8e\u0ba9\u0b95\u0bcd\u0b95\u0bbe\u0b95 100 \u0ba8\u0bc6\u0baf\u0bbf\u0bb2\u0bcd \u0baa\u0bbe\u0bb2\u0bbf\u0b9a\u0bc8 \u0bb5\u0bb0\u0bc1\u0bae\u0bcd \u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0b9f\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8 \u0b9f\u0bc6\u0bb2\u0bbf\u0bb5\u0bb0\u0bbf \u0baa\u0ba3\u0bcd\u0ba3\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd. \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b9a\u0bbf\u0baa\u0bbf\u0baf\u0bc2 \u0b9f\u0bc7\u0bae\u0bc7\u0b9c\u0bcd \u0b95\u0bbe\u0bb0\u0ba3\u0bae\u0bbe\u0b95 \u0b85\u0ba4\u0bc8\u0baf\u0bc1\u0bae\u0bcd \u0b9a\u0bb0\u0bbf \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd.",
+    "translation": "Greetings to the vendor. I am Paramesh speaking. From Salem district, I humbly request that 100 nail polishes be delivered to me by coming Monday. And due to CPU damage, I humbly request that it also be fixed.",
+    "detected_language": "en",
+    "timestamp": 1758931428.83205,
+    "filename": "me 2.ogg",
+    "structured_record": {
+      "call_id": "call_20250927_053348_a2b4",
+      "distributor_id": "dist_42",
+      "model_classification": "Technical",
+      "sentiment_score": 0.0,
+      "sentiment_summary": "neutral",
+      "key_phrases": [
+        "100 nail polishes",
+        "delivered by coming Monday",
+        "CPU damage",
+        "be fixed"
+      ],
+      "POSITIVE_INTENT": [
+        "humbly request that 100 nail polishes be delivered",
+        "it also be fixed"
+      ],
+      "NEGATIVE_INTENT": [
+        "CPU damage"
+      ],
+      "ACTION_SUMMARY": "Deliver 100 nail polishes by Monday and repair the CPU damage.",
+      "CLASSIFICATION_JUSTIFICATION": "due to CPU damage",
+      "TECHNICAL_PHRASES": [
+        "CPU damage",
+        "fixed"
+      ],
+      "NON_TECHNICAL_PHRASES": [
+        "Greetings to the vendor",
+        "I am Paramesh speaking",
+        "From Salem district",
+        "I humbly request",
+        "100 nail polishes",
+        "delivered to me by coming Monday"
+      ],
+      "MODEL_CONFIDENCE_SCORES": {
+        "Technical": 0.646,
+        "Non-Technical": 0.354
+      }
+    }
+  },
+  {
+    "call_id": "call_20250927_053738_d56a",
+    "transcription": "\u0bb5\u0bc6\u0ba3\u0bcd\u0b9f\u0bbe\u0bb0\u0bcd \u0b85\u0bb5\u0bb0\u0bcd\u0b95\u0bb3\u0bc1\u0b95\u0bcd\u0b95\u0bc1 \u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd \u0ba8\u0bbe\u0ba9\u0bcd \u0baa\u0bb0\u0bae\u0bc7\u0bb7\u0bcd \u0baa\u0bc7\u0b9a\u0bc1\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd \u0b9a\u0bc7\u0bb2\u0bae\u0bcd \u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1. \u0b8e\u0ba9\u0b95\u0bcd\u0b95\u0bbe\u0b95 100 \u0ba8\u0bc6\u0baf\u0bbf\u0bb2\u0bcd \u0baa\u0bbe\u0bb2\u0bbf\u0b9a\u0bc8 \u0bb5\u0bb0\u0bc1\u0bae\u0bcd \u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0b9f\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8 \u0b9f\u0bc6\u0bb2\u0bbf\u0bb5\u0bb0\u0bbf \u0baa\u0ba3\u0bcd\u0ba3\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0baf\u0bb5\u0bc1\u0bae\u0bc1\u0b9f\u0ba9\u0bcd \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b9a\u0bbf\u0baa\u0bbf\u0baf\u0bc1 \u0b9f\u0bc7\u0bae\u0bc7\u0b9c\u0bcd \u0b95\u0bbe\u0bb0\u0ba3\u0bae\u0bbe\u0b95 \u0b85\u0ba4\u0bc8\u0baf\u0bc1\u0bae\u0bcd \u0b9a\u0bb0\u0bbf \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd.",
+    "translation": "Greetings to Vendor. This is Paramesh speaking from Salem district. I kindly and humbly request that 100 nail polishes be delivered for me next Monday, and I humbly request that the CPU damage also be fixed.",
+    "detected_language": "en",
+    "timestamp": 1758931658.368895,
+    "filename": "me 2.ogg",
+    "structured_record": {
+      "call_id": "call_20250927_053738_d56a",
+      "distributor_id": "dist_42",
+      "model_classification": "Technical",
+      "sentiment_score": -0.1,
+      "sentiment_summary": "neutral",
+      "key_phrases": [
+        "100 nail polishes",
+        "next Monday",
+        "CPU damage",
+        "fixed"
+      ],
+      "POSITIVE_INTENT": [
+        "kindly and humbly request",
+        "delivered"
+      ],
+      "NEGATIVE_INTENT": [
+        "CPU damage"
+      ],
+      "ACTION_SUMMARY": "Customer requests 100 nail polishes to be delivered next Monday and for CPU damage to be fixed.",
+      "CLASSIFICATION_JUSTIFICATION": "the CPU damage also be fixed",
+      "TECHNICAL_PHRASES": [
+        "CPU damage"
+      ],
+      "NON_TECHNICAL_PHRASES": [
+        "Greetings to Vendor",
+        "Paramesh speaking from Salem district",
+        "kindly and humbly request",
+        "100 nail polishes",
+        "next Monday"
+      ],
+      "MODEL_CONFIDENCE_SCORES": {
+        "Technical": 0.512,
+        "Non-Technical": 0.488
+      }
+    }
+  },
+  {
+    "call_id": "call_20250927_053950_4721",
+    "transcription": "\u0bb5\u0bc6\u0ba3\u0bcd\u0b9f\u0bbe\u0bb0\u0bcd \u0b85\u0bb5\u0bb0\u0bcd\u0b95\u0bb3\u0bc1\u0b95\u0bcd\u0b95\u0bc1 \u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd \u0ba8\u0bbe\u0ba9\u0bcd \u0baa\u0bb0\u0bae\u0bc7\u0bb7\u0bcd \u0baa\u0bc7\u0b9a\u0bc1\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd \u0b9a\u0bc7\u0bb2\u0bae\u0bcd \u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 \u0b8e\u0ba9\u0ba4\u0bc1\u0b95\u0bcd\u0b95\u0bbe\u0b95 100 \u0ba8\u0bc6\u0baf\u0bbf\u0bb2\u0bcd \u0baa\u0bbe\u0bb2\u0bbf\u0b9a\u0bc8 \u0bb5\u0bb0\u0bc1\u0bae\u0bcd \u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0b9f\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8 \u0b9f\u0bc6\u0bb2\u0bbf\u0bb5\u0bb0\u0bbf \u0baa\u0ba3\u0bcd\u0ba3\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0baf\u0bc1\u0bae\u0bc1\u0b9f\u0ba9\u0bcd \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b9a\u0bbf\u0baa\u0bbf\u0baf\u0bc2 \u0b9f\u0bc7\u0bae\u0bc7\u0b9c\u0bcd \u0b95\u0bbe\u0bb0\u0ba3\u0bae\u0bbe\u0b95 \u0b85\u0ba4\u0bc8\u0baf\u0bc1\u0bae\u0bcd \u0b9a\u0bb0\u0bbf \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd.",
+    "translation": "Greetings to the vendor. I am Paramesh speaking, from Salem district. I very humbly request that 100 nail polishes be delivered for me next Monday. And due to CPU damage, I also humbly request that it be fixed.",
+    "detected_language": "en",
+    "timestamp": 1758931790.9836128,
+    "filename": "me 2.ogg",
+    "structured_record": {
+      "call_id": "call_20250927_053950_4721",
+      "distributor_id": "dist_42",
+      "model_classification": "Technical",
+      "sentiment_score": 0.0,
+      "sentiment_summary": "neutral",
+      "key_phrases": [
+        "Greetings to the vendor",
+        "Paramesh speaking",
+        "Salem district",
+        "100 nail polishes",
+        "next Monday",
+        "CPU damage",
+        "be fixed"
+      ],
+      "POSITIVE_INTENT": [
+        "100 nail polishes be delivered",
+        "it be fixed"
+      ],
+      "NEGATIVE_INTENT": [
+        "CPU damage"
+      ],
+      "ACTION_SUMMARY": "Deliver 100 nail polishes by next Monday and arrange for a fix of the CPU damage.",
+      "CLASSIFICATION_JUSTIFICATION": "CPU damage",
+      "TECHNICAL_PHRASES": [
+        "CPU damage"
+      ],
+      "NON_TECHNICAL_PHRASES": [
+        "Greetings to the vendor",
+        "I am Paramesh speaking",
+        "from Salem district",
+        "I very humbly request",
+        "100 nail polishes be delivered",
+        "next Monday",
+        "it be fixed"
+      ],
+      "MODEL_CONFIDENCE_SCORES": {
+        "Technical": 0.504,
+        "Non-Technical": 0.496
+      }
+    }
+  },
+  {
+    "call_id": "call_20250927_054404_8f46",
+    "transcription": "\u0bb5\u0bc6\u0ba3\u0bcd\u0b9f\u0bbe\u0bb0\u0bcd \u0b85\u0bb5\u0bb0\u0bcd\u0b95\u0bb3\u0bc1\u0b95\u0bcd\u0b95\u0bc1 \u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd. \u0ba8\u0bbe\u0ba9\u0bcd \u0baa\u0bb0\u0bae\u0bc7\u0bb7\u0bcd \u0baa\u0bc7\u0b9a\u0bc1\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd. \u0b9a\u0bc7\u0bb2\u0bae\u0bcd \u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 \u0b8e\u0ba9\u0ba4\u0bc1\u0b95\u0bcd\u0b95\u0bbe\u0b95 100 \u0ba8\u0bc6\u0baf\u0bcd\u0bb2\u0bcd \u0baa\u0bbe\u0bb2\u0bbf\u0b9a\u0bc8 \u0bb5\u0bb0\u0bc1\u0bae\u0bcd \u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0b9f\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8 \u0b9f\u0bc6\u0bb2\u0bbf\u0bb5\u0bb0\u0bbf \u0baa\u0ba3\u0bcd\u0ba3\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0baf\u0bcd\u0bae\u0bc1\u0b9f\u0ba9\u0bcd \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b9a\u0bbf\u0baa\u0bbf\u0baf\u0bc2 \u0b9f\u0bc7\u0bae\u0bc7\u0b9c\u0bcd \u0b95\u0bbe\u0bb0\u0ba3\u0bae\u0bbe\u0b95 \u0b85\u0ba4\u0bc8\u0baf\u0bc1\u0bae\u0bcd \u0b9a\u0bb0\u0bbf \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd.",
+    "translation": "Hello to the vendor. I am Paramesh speaking. From Salem district, I humbly and earnestly request that 100 nail polishes for me be delivered next Monday, and also humbly request that the CPU damage be fixed.",
+    "detected_language": "en",
+    "timestamp": 1758932044.8975022,
+    "filename": "me 2.ogg",
+    "structured_record": {
+      "call_id": "call_20250927_054404_8f46",
+      "distributor_id": "dist_42",
+      "model_classification": "Non-Technical",
+      "sentiment_score": -0.1,
+      "sentiment_summary": "neutral",
+      "key_phrases": [
+        "100 nail polishes",
+        "delivered next Monday",
+        "CPU damage be fixed",
+        "humbly and earnestly request"
+      ],
+      "POSITIVE_INTENT": [
+        "request that 100 nail polishes for me be delivered"
+      ],
+      "NEGATIVE_INTENT": [
+        "CPU damage be fixed"
+      ],
+      "ACTION_SUMMARY": "Deliver 100 nail polishes by next Monday and fix the CPU damage.",
+      "CLASSIFICATION_JUSTIFICATION": "I humbly and earnestly request that 100 nail polishes for me be delivered next Monday.",
+      "TECHNICAL_PHRASES": [
+        "CPU damage"
+      ],
+      "NON_TECHNICAL_PHRASES": [
+        "Hello to the vendor",
+        "I am Paramesh speaking",
+        "From Salem district",
+        "humbly and earnestly request",
+        "100 nail polishes",
+        "delivered next Monday"
+      ],
+      "MODEL_CONFIDENCE_SCORES": {
+        "Technical": 0.478,
+        "Non-Technical": 0.522
+      }
+    }
+  },
+  {
+    "call_id": "call_20250927_054557_5d31",
+    "transcription": "\u0b85 \u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd\u0b99\u0bcd\u0b95 \u0ba8\u0bbe\u0ba9\u0bcd \u0bb5\u0ba8\u0bcd\u0ba4\u0bc1 \u0baa\u0bb0\u0bae\u0bc7\u0b9a\u0bc1 \u0b9a\u0bc7\u0bb2\u0bae\u0bcd \u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 \u0baa\u0bc7\u0b9a\u0bc1\u0bb1\u0bc7\u0ba9\u0bcd. \u0b8e\u0ba9\u0b95\u0bcd\u0b95\u0bc1 \u0b85\u0ba8\u0bcd\u0ba4 \u0ba8\u0bc2\u0bb1\u0bc1 \u0ba8\u0bc6\u0baf\u0bbf\u0bb2\u0bcd \u0baa\u0bbe\u0bb2\u0bbf\u0bb7\u0bcd \u0bb5\u0ba8\u0bcd\u0ba4\u0bc1 \u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0b9f\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8\u0b95\u0bcd\u0b95\u0bc1\u0bb3\u0bcd\u0bb3 \u0b85\u0ba9\u0bc1\u0baa\u0bcd\u0baa\u0bbf \u0bb5\u0bbf\u0b9f\u0bc1\u0b99\u0bcd\u0b95. \u0b92\u0bb0\u0bc1 \u0b9a\u0bc0\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0bae\u0bcd \u0b85\u0ba9\u0bc1\u0baa\u0bcd\u0baa\u0bbf \u0bb5\u0bbf\u0b9f\u0bc1\u0b99\u0bcd\u0b95 \u0b85\u0bb0\u0bcd\u0b9c\u0bc6\u0ba9\u0bcd\u0b9a\u0bbf.",
+    "translation": "Ah, hello. I am Paramesu. I'm speaking from Salem district. Please send me those hundred nail polishes by Monday. Please send them quickly, it's urgent.",
+    "detected_language": "en",
+    "timestamp": 1758932157.7461538,
+    "filename": "me tamil.ogg",
+    "structured_record": {
+      "call_id": "call_20250927_054557_5d31",
+      "distributor_id": "dist_42",
+      "model_classification": "Technical",
+      "sentiment_score": 0.1,
+      "sentiment_summary": "Neutral",
+      "key_phrases": [
+        "hundred nail polishes",
+        "by Monday",
+        "send them quickly",
+        "it's urgent"
+      ],
+      "POSITIVE_INTENT": [
+        "Please send me",
+        "hundred nail polishes"
+      ],
+      "NEGATIVE_INTENT": [
+        "it's urgent"
+      ],
+      "ACTION_SUMMARY": "Customer requires urgent delivery of 100 nail polishes by Monday.",
+      "CLASSIFICATION_JUSTIFICATION": "Please send me those hundred nail polishes by Monday. Please send them quickly, it's urgent.",
+      "TECHNICAL_PHRASES": [],
+      "NON_TECHNICAL_PHRASES": [
+        "Ah, hello",
+        "I am Paramesu",
+        "speaking from Salem district",
+        "Please send me",
+        "hundred nail polishes",
+        "by Monday",
+        "send them quickly",
+        "it's urgent"
+      ],
+      "MODEL_CONFIDENCE_SCORES": {
+        "Technical": 0.816,
+        "Non-Technical": 0.184
+      }
+    }
+  },
+  {
+    "call_id": "call_20250927_054931_967a",
+    "transcription": "\u0bb5\u0bc6\u0ba3\u0bcd\u0b9f\u0bbe\u0bb0\u0bcd \u0b85\u0bb5\u0bb0\u0bcd\u0b95\u0bb3\u0bc1\u0b95\u0bcd\u0b95\u0bc1 \u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd. \u0ba8\u0bbe\u0ba9\u0bcd \u0baa\u0bb0\u0bae\u0bc7\u0bb7\u0bcd \u0baa\u0bc7\u0b9a\u0bc1\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd. \u0b9a\u0bc7\u0bb2\u0bae\u0bcd \u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 \u0b8e\u0ba9\u0b95\u0bcd\u0b95\u0bbe\u0b95 \u0ba8\u0bc2\u0bb1\u0bc1 \u0ba8\u0bc6\u0baf\u0bbf\u0bb2\u0bcd \u0baa\u0bbe\u0bb2\u0bbf\u0b9a\u0bc8 \u0bb5\u0bb0\u0bc1\u0bae\u0bcd \u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0b9f\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8 \u0b9f\u0bc6\u0bb2\u0bbf\u0bb5\u0bb0\u0bbf \u0baa\u0ba3\u0bcd\u0ba3\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0baf\u0bbf\u0bae\u0bc1\u0b9f\u0ba9\u0bcd \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b9a\u0bbf\u0baa\u0bbf\u0baf\u0bc2 \u0b9f\u0bc7\u0bae\u0bc7\u0b9c\u0bcd \u0b95\u0bbe\u0bb0\u0ba3\u0bae\u0bbe\u0b95 \u0b85\u0ba4\u0bc8\u0baf\u0bc1\u0bae\u0bcd \u0b9a\u0bb0\u0bbf \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd.",
+    "translation": "Hello to the vendor. I am Paramesh speaking. From Salem district, I humbly and respectfully request that 100 nail polishes be delivered for me this coming Monday, and I also humbly request that the CPU damage be repaired due to the damage.",
+    "detected_language": "en",
+    "timestamp": 1758932371.3798685,
+    "filename": "me 2.ogg",
+    "structured_record": {
+      "call_id": "call_20250927_054931_967a",
+      "distributor_id": "dist_42",
+      "model_classification": "Non-Technical",
+      "sentiment_score": -0.1,
+      "sentiment_summary": "Neutral",
+      "key_phrases": [
+        "100 nail polishes be delivered",
+        "this coming Monday",
+        "CPU damage be repaired"
+      ],
+      "POSITIVE_INTENT": [
+        "humbly and respectfully request",
+        "nail polishes be delivered"
+      ],
+      "NEGATIVE_INTENT": [
+        "CPU damage",
+        "due to the damage"
+      ],
+      "ACTION_SUMMARY": "Deliver 100 nail polishes by Monday and repair CPU damage.",
+      "CLASSIFICATION_JUSTIFICATION": "I humbly and respectfully request that 100 nail polishes be delivered for me this coming Monday.",
+      "TECHNICAL_PHRASES": [
+        "CPU damage",
+        "repaired"
+      ],
+      "NON_TECHNICAL_PHRASES": [
+        "Hello to the vendor",
+        "I am Paramesh speaking",
+        "From Salem district",
+        "humbly and respectfully request",
+        "100 nail polishes",
+        "be delivered",
+        "this coming Monday",
+        "also humbly request",
+        "due to the damage"
+      ],
+      "MODEL_CONFIDENCE_SCORES": {
+        "Technical": 0.49,
+        "Non-Technical": 0.51
+      }
+    }
+  },
+  {
+    "call_id": "call_20250927_055150_c1de",
+    "transcription": "\u0bb5\u0bc6\u0ba3\u0bcd\u0b9f\u0bbe\u0bb0\u0bcd \u0b85\u0bb5\u0bb0\u0bcd\u0b95\u0bb3\u0bc1\u0b95\u0bcd\u0b95\u0bc1 \u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd. \u0ba8\u0bbe\u0ba9\u0bcd \u0baa\u0bb0\u0bae\u0bc7\u0bb7\u0bcd \u0baa\u0bc7\u0b9a\u0bc1\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd. \u0b9a\u0bc7\u0bb2\u0bae\u0bcd \u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1. \u0b8e\u0ba9\u0b95\u0bcd\u0b95\u0bbe\u0b95 100 \u0ba8\u0bc6\u0baf\u0bcd\u0bb2\u0bcd \u0baa\u0bbe\u0bb2\u0bbf\u0b9a\u0bbf\u0baf\u0bc8 \u0bb5\u0bb0\u0bc1\u0bae\u0bcd \u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0b9f\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8 \u0b9f\u0bc6\u0bb2\u0bbf\u0bb5\u0bb0\u0bbf \u0baa\u0ba3\u0bcd\u0ba3\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0baf\u0bae\u0bc1\u0b9f\u0ba9\u0bcd \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd. \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd CPU \u0b9f\u0bc7\u0bae\u0bc7\u0b9c\u0bcd \u0b95\u0bbe\u0bb0\u0ba3\u0bae\u0bbe\u0b95 \u0b85\u0ba4\u0bc8\u0baf\u0bc1\u0bae\u0bcd \u0b9a\u0bb0\u0bbf \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0bc1\u0bae\u0bbe\u0bb1\u0bc1 \u0ba4\u0bbe\u0bb4\u0bcd\u0bae\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0bca\u0bb3\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd.",
+    "translation": "Greetings to Mr. Vendar. I am Paramesh speaking. From Salem district. I earnestly and humbly request that 100 nail policies be delivered for me next Monday. And due to CPU damage, I humbly request that it also be fixed.",
+    "detected_language": "en",
+    "timestamp": 1758932510.1130486,
+    "filename": "me 2.ogg",
+    "structured_record": {
+      "call_id": "call_20250927_055150_c1de",
+      "distributor_id": "dist_42",
+      "model_classification": "Non-Technical",
+      "sentiment_score": -0.1,
+      "sentiment_summary": "neutral",
+      "key_phrases": [
+        "100 nail policies",
+        "next Monday",
+        "CPU damage",
+        "be fixed"
+      ],
+      "POSITIVE_INTENT": [
+        "request",
+        "delivered",
+        "be fixed"
+      ],
+      "NEGATIVE_INTENT": [
+        "CPU damage"
+      ],
+      "ACTION_SUMMARY": "Deliver 100 nail policies next Monday and fix the CPU damage.",
+      "CLASSIFICATION_JUSTIFICATION": "I earnestly and humbly request that 100 nail policies be delivered for me next Monday.",
+      "TECHNICAL_PHRASES": [
+        "CPU damage"
+      ],
+      "NON_TECHNICAL_PHRASES": [
+        "Greetings to Mr. Vendar",
+        "I am Paramesh speaking",
+        "From Salem district",
+        "I earnestly and humbly request",
+        "delivered for me next Monday",
+        "it also be fixed"
+      ],
+      "MODEL_CONFIDENCE_SCORES": {
+        "Technical": 0.486,
+        "Non-Technical": 0.514
+      }
+    }
+  }
+]

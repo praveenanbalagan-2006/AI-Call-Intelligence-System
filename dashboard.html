@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Call Intelligence God Level Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Customizing Tailwind theme for a sleek, dark, vibrant look
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1', // Indigo-500
+                        secondary: '#111827', // Gray-900 for main background
+                        card: '#1f2937', // Gray-800 for card backgrounds
+                        accent: '#34d399', // Emerald-400 for positive metrics
+                        alert: '#f87171', // Red-400 for critical alerts
+                        warning: '#fbbf24', // Amber-400 for follow-ups
+                    },
+                    keyframes: {
+                        pulseEffect: {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 0 0 rgba(99, 102, 241, 0.7)' },
+                            '50%': { opacity: 0.7, boxShadow: '0 0 0 10px rgba(99, 102, 241, 0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0, transform: 'translateY(-10px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        pulseEffect: 'pulseEffect 2s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        fadeIn: 'fadeIn 0.5s ease-out',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Base styles */
+        body {
+            background-color: #111827;
+            color: #e5e7eb; /* Gray-200 text */
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Custom scrollbar for dark theme */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #6366f1;
+            border-radius: 3px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: #1f2937;
+        }
+
+        /* Sidebar and Content Layout */
+        #mainLayout {
+            display: grid;
+            grid-template-columns: 280px 1fr; /* Fixed Sidebar + Fluid Content */
+            min-height: calc(100vh - 80px); /* Adjusting for header height */
+        }
+
+        /* Specific Chatbot Styles */
+        #chatbotContainer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .chat-bubble {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .user-bubble {
+            background-color: #6366f1;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .ai-bubble {
+            background-color: #374151;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER AND AI SEARCH BAR -->
+    <header class="p-4 bg-card shadow-2xl sticky top-0 z-50 border-b border-primary">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <h1 class="text-3xl font-extrabold flex items-center text-primary">
+                <i data-lucide="brain-circuit" class="w-8 h-8 mr-3 animate-spin-slow"></i>
+                AI Call Intelligence System
+            </h1>
+            
+            <!-- Combined Search and Action -->
+            <div class="flex w-full md:w-auto space-x-4">
+                <div class="relative w-full md:w-80">
+                    <i data-lucide="search" class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="distributorSearch" placeholder="Search Distributor by Name, Issue, or Score..." class="w-full bg-secondary text-white border border-gray-600 rounded-xl py-2 pl-10 pr-4 focus:border-primary focus:ring focus:ring-primary/50 transition" oninput="filterDistributors()">
+                </div>
+                <button id="connectBtn" class="bg-accent text-card font-semibold py-2 px-4 rounded-xl shadow-lg transition duration-300 hover:bg-emerald-300 flex items-center">
+                    <i data-lucide="cloud-lightning" class="w-4 h-4 mr-1"></i>
+                    Live Connect
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mainLayout">
+        <!-- LEFT SIDEBAR - ADVANCED FILTERS AND NAVIGATION -->
+        <aside class="bg-card p-4 custom-scroll shadow-xl sticky top-[80px] h-full overflow-y-auto border-r border-gray-700">
+            <h3 class="text-xl font-bold text-primary mb-5 border-b pb-2 border-gray-700">Analytics Filters</h3>
+
+            <div id="sidebarFilters" class="space-y-4">
+                <!-- Dropdown 1: Region -->
+                <div class="filter-group">
+                    <label class="block text-sm font-medium text-gray-400 mb-1 flex items-center"><i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>Region</label>
+                    <select class="w-full bg-secondary text-white rounded-lg p-2 border border-gray-600 focus:border-primary" onchange="filterDistributors()">
+                        <option value="all">All Regions</option>
+                        <option value="na">North America</option>
+                        <option value="eu">Europe</option>
+                        <option value="asia">Asia Pacific</option>
+                    </select>
+                </div>
+
+                <!-- Dropdown 2: Vendor Tier -->
+                <div class="filter-group">
+                    <label class="block text-sm font-medium text-gray-400 mb-1 flex items-center"><i data-lucide="crown" class="w-4 h-4 mr-2"></i>Vendor Tier</label>
+                    <select class="w-full bg-secondary text-white rounded-lg p-2 border border-gray-600 focus:border-primary" onchange="filterDistributors()">
+                        <option value="all">All Tiers</option>
+                        <option value="platinum">Platinum</option>
+                        <option value="gold">Gold</option>
+                        <option value="silver">Silver</option>
+                    </select>
+                </div>
+
+                <!-- Dropdown 3: Contract Status -->
+                <div class="filter-group">
+                    <label class="block text-sm font-medium text-gray-400 mb-1 flex items-center"><i data-lucide="file-text" class="w-4 h-4 mr-2"></i>Contract Status</label>
+                    <select class="w-full bg-secondary text-white rounded-lg p-2 border border-gray-600 focus:border-primary" onchange="filterDistributors()">
+                        <option value="all">All Statuses</option>
+                        <option value="active">Active</option>
+                        <option value="renewal">Due for Renewal</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+
+                <!-- Dropdown 4: Product Focus -->
+                <div class="filter-group">
+                    <label class="block text-sm font-medium text-gray-400 mb-1 flex items-center"><i data-lucide="box" class="w-4 h-4 mr-2"></i>Product Focus</label>
+                    <select class="w-full bg-secondary text-white rounded-lg p-2 border border-gray-600 focus:border-primary" onchange="filterDistributors()">
+                        <option value="all">All Products</option>
+                        <option value="cloud">Cloud Services</option>
+                        <option value="saas">SaaS Platform</option>
+                        <option value="hardware">Hardware</option>
+                    </select>
+                </div>
+
+                <!-- Dropdown 5: Team Lead -->
+                <div class="filter-group">
+                    <label class="block text-sm font-medium text-gray-400 mb-1 flex items-center"><i data-lucide="users" class="w-4 h-4 mr-2"></i>Team Lead</label>
+                    <select class="w-full bg-secondary text-white rounded-lg p-2 border border-gray-600 focus:border-primary" onchange="filterDistributors()">
+                        <option value="all">All Leads</option>
+                        <option value="alice">Alice J.</option>
+                        <option value="bob">Bob K.</option>
+                        <option value="charlie">Charlie L.</option>
+                    </select>
+                </div>
+                
+                <!-- Action Button -->
+                <button class="w-full bg-primary text-white font-semibold py-2 rounded-xl mt-4 hover:bg-indigo-600 transition">
+                    <i data-lucide="filter" class="w-4 h-4 inline-block mr-1"></i> Apply Advanced Filter
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="p-6">
+            <!-- AGGREGATE STATS ROW (8 metrics for 80+ feature count) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-6">
+                
+                <!-- 1. Total Calls -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-primary hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Total Calls</h2>
+                    <div class="text-2xl font-extrabold mt-1" id="totalCalls">0</div>
+                    <p class="text-[10px] text-accent mt-1">+12% MoM</p>
+                </div>
+
+                <!-- 2. Critical Escalate -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-alert hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Critical Escalate</h2>
+                    <div class="text-2xl font-extrabold mt-1 text-alert" id="techIssues">0</div>
+                    <p class="text-[10px] text-alert mt-1 flex items-center"><i data-lucide="bell" class="w-2 h-2 mr-1 animate-pulseEffect"></i> Immediate</p>
+                </div>
+
+                <!-- 3. Sales Follow-up -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-warning hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Sales Follow-up</h2>
+                    <div class="text-2xl font-extrabold mt-1 text-warning" id="businessIssues">0</div>
+                    <p class="text-[10px] text-warning mt-1">Trust < 60</p>
+                </div>
+
+                <!-- 4. Avg Trust Score -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-accent hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Avg. Trust Score</h2>
+                    <div class="text-2xl font-extrabold mt-1 text-accent" id="trustScore">0</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Sentiment Index</p>
+                </div>
+
+                <!-- 5. Avg AHT (min) -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-gray-500 hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Avg. AHT (min)</h2>
+                    <div class="text-2xl font-extrabold mt-1" id="aht">0.0</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Target: < 8.0</p>
+                </div>
+
+                <!-- 6. Avg Resolution Time (NEW) -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-sky-500 hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Resolution (hrs)</h2>
+                    <div class="text-2xl font-extrabold mt-1 text-sky-400" id="resTime">0.0</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Target: < 24 hrs</p>
+                </div>
+
+                <!-- 7. Failed Escalations (NEW) -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-purple-500 hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Failed Esc. (7d)</h2>
+                    <div class="text-2xl font-extrabold mt-1 text-purple-400" id="failedEsc">0</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Count</p>
+                </div>
+
+                <!-- 8. Customer Churn Rate (NEW) -->
+                <div class="stat-card bg-card p-3 rounded-xl shadow-lg border-l-4 border-pink-500 hover:scale-[1.03] transition">
+                    <h2 class="text-xs font-semibold text-gray-400">Churn Rate (%)</h2>
+                    <div class="text-2xl font-extrabold mt-1 text-pink-400" id="churnRate">0.0%</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Goal: < 5.0%</p>
+                </div>
+            </div>
+
+            <!-- DISTRIBUTOR PERFORMANCE TABLE (Full Width) -->
+            <div class="bg-card p-6 rounded-xl shadow-2xl mb-6">
+                <div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-3">
+                    <h2 class="text-xl font-bold text-primary flex items-center">
+                        <i data-lucide="trending-up" class="w-6 h-6 mr-2"></i>
+                        Distributor Performance Analytics
+                    </h2>
+                    <!-- Filter Dropdown -->
+                    <select id="scoreFilter" onchange="filterDistributors()" class="bg-gray-700 text-white text-sm rounded-lg p-2 border border-gray-600 focus:border-primary">
+                        <option value="all">Filter by Score/Urgency</option>
+                        <option value="critical">Critical Risk (< 30)</option>
+                        <option value="warning">Warning Risk (30-60)</option>
+                        <option value="low">Low Risk (> 60)</option>
+                    </select>
+                </div>
+                
+                <div class="overflow-x-auto custom-scroll max-h-[600px]">
+                    <table class="min-w-full divide-y divide-gray-700">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Distributor</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Total Calls</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Tech %</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Avg Sentiment</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">CSAT (NEW)</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Escalation Rate % (NEW)</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Risk Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="distributorTableBody" class="divide-y divide-gray-800">
+                            <!-- Rows populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CRITICAL ALERTS / LIVE SUMMARY CARD (Side by side at the bottom) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- CRITICAL ALERTS CARD -->
+                <div class="bg-card p-6 rounded-xl shadow-2xl custom-scroll max-h-[350px]">
+                    <h2 class="text-xl font-bold text-alert mb-4 flex items-center">
+                        <i data-lucide="alert-triangle" class="w-6 h-6 mr-2 animate-pulse"></i>
+                        Critical Alerts
+                    </h2>
+                    <ul id="alerts" class="space-y-3">
+                        <!-- Alerts populated by JS -->
+                    </ul>
+                </div>
+                
+                <!-- RECENT SUMMARIES CARD -->
+                <div class="bg-card p-6 rounded-xl shadow-2xl custom-scroll max-h-[350px]">
+                    <h2 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <i data-lucide="history" class="w-6 h-6 mr-2"></i>
+                        Recent Summaries
+                    </h2>
+                    <ul id="recentCalls" class="space-y-3">
+                        <!-- Recent calls populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- AI CHATBOT INTERFACE -->
+    <div id="chatbotContainer">
+        <div id="chatToggleButton" class="bg-primary hover:bg-indigo-600 text-white p-4 rounded-full shadow-2xl cursor-pointer transition duration-300 animate-bounce" onclick="toggleChatbot()">
+            <i data-lucide="message-square" class="w-6 h-6"></i>
+        </div>
+        <div id="chatWindow" class="hidden bg-card rounded-xl shadow-2xl w-80 h-96 mt-4 flex flex-col border border-primary">
+            <div class="p-3 bg-primary rounded-t-xl flex justify-between items-center">
+                <span class="font-bold text-white">AI Analyst Assistant</span>
+                <i data-lucide="x" class="w-5 h-5 cursor-pointer hover:text-gray-200" onclick="toggleChatbot()"></i>
+            </div>
+            <div id="chatMessages" class="flex-grow p-3 overflow-y-auto custom-scroll flex flex-col">
+                <div class="chat-bubble ai-bubble self-start">Hello! Ask me about a distributor's score or urgent issues. Try: "score for GlobalTech".</div>
+            </div>
+            <div class="p-3 border-t border-gray-700 flex">
+                <input type="text" id="chatInput" placeholder="Ask your question..." class="flex-grow bg-secondary text-white rounded-lg px-3 py-2 mr-2 focus:outline-none" onkeypress="handleChatInput(event)">
+                <button onclick="sendMessage()" class="bg-primary text-white p-2 rounded-lg hover:bg-indigo-600 transition">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DISTRIBUTOR DETAIL MODAL (NEW FEATURE) -->
+    <div id="detailModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-[1010] flex items-center justify-center backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-card w-11/12 lg:w-3/5 max-h-[90vh] p-8 rounded-xl shadow-2xl animate-fadeIn custom-scroll">
+            <div class="flex justify-between items-center border-b pb-3 border-gray-700 mb-4">
+                <h2 id="modalTitle" class="text-2xl font-bold text-primary flex items-center">Distributor Detail: [Name]</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white transition">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div id="modalContent" class="space-y-6">
+                <!-- Top Statuses -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-3 rounded-lg border border-gray-600 bg-gray-800">
+                        <p class="text-xs text-gray-400">Current Risk Score</p>
+                        <p id="modalRiskScore" class="text-3xl font-extrabold text-alert mt-1">25</p>
+                    </div>
+                    <div class="p-3 rounded-lg border border-gray-600 bg-gray-800">
+                        <p class="text-xs text-gray-400">Total Calls (MTD)</p>
+                        <p id="modalTotalCalls" class="text-3xl font-extrabold text-primary mt-1">450</p>
+                    </div>
+                    <div class="p-3 rounded-lg border border-gray-600 bg-gray-800">
+                        <p class="text-xs text-gray-400">CSAT (Latest)</p>
+                        <p id="modalCSAT" class="text-3xl font-extrabold text-accent mt-1">4.2</p>
+                    </div>
+                    <div class="p-3 rounded-lg border border-gray-600 bg-gray-800">
+                        <p class="text-xs text-gray-400">Non-Tech Rate %</p>
+                        <p id="modalNonTech" class="text-3xl font-extrabold text-warning mt-1">45%</p>
+                    </div>
+                </div>
+
+                <!-- Detail Section 1: Performance Breakdown -->
+                <div class="bg-secondary p-4 rounded-xl">
+                    <h3 class="text-lg font-semibold text-gray-300 mb-3 border-b border-gray-700 pb-2">Performance Breakdown</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <p><strong>Vendor Tier:</strong> <span id="modalTier" class="text-primary">Platinum</span></p>
+                        <p><strong>Contract Status:</strong> <span id="modalContract" class="text-accent">Active</span></p>
+                        <p><strong>Average Sentiment:</strong> <span id="modalSentiment" class="text-red-500">-0.4</span> (Negative)</p>
+                        <p><strong>Product Focus:</strong> <span id="modalProduct" class="text-sky-400">Cloud Services</span></p>
+                        <p><strong>Escalation Rate:</strong> <span id="modalEscalation" class="text-alert">12.5%</span> (High)</p>
+                        <p><strong>Average AHT:</strong> <span id="modalAHT" class="text-gray-400">9.1 min</span></p>
+                        <p><strong>Failed Audit Count:</strong> <span id="modalAudit" class="text-warning">2</span></p>
+                        <p><strong>Last Activity:</strong> <span id="modalLastActivity" class="text-gray-400">2023-10-25</span></p>
+                    </div>
+                </div>
+
+                <!-- Detail Section 2: Historical Issues (Mock History Feature) -->
+                <div class="bg-secondary p-4 rounded-xl">
+                    <h3 class="text-lg font-semibold text-gray-300 mb-3 border-b border-gray-700 pb-2">Recent Call History & Urgency</h3>
+                    <ul id="modalHistoryList" class="space-y-2 text-sm custom-scroll max-h-40">
+                        <!-- History items populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC - All functions are updated/new -->
+    <script>
+        const mockData = {
+            // Aggregate Data
+            totalCalls: 1247, techIssues: 34, businessIssues: 67, trustScoreValue: 87, aht: 8.2,
+            resTime: 28.5, failedEsc: 7, churnRate: 6.2, // NEW AGGREGATE STATS
+            
+            alerts: [
+                { text: "High Severity: Deployment Pipeline Blocked (GlobalTech). **Auto-Ticket created.**", type: "tech" },
+                { text: "Urgent Follow-up: Renewal Negotiation (Apex Distributors) - Trust Score 45.", type: "business" },
+                { text: "Escalate: Customer mentioned 'critical failure' on Call #1023 (DistriCo).", type: "tech" },
+            ],
+
+            recentCalls: [
+                { id: 1021, summary: "Technical: API Timeout", color: "text-alert" },
+                { id: 1022, summary: "Non-Tech: Pricing Clarification", color: "text-warning" },
+                { id: 1023, summary: "Technical: Database Read Error", color: "text-alert" },
+                { id: 1024, summary: "Non-Tech: Enablement Request", color: "text-warning" },
+            ],
+            
+            // Distributor/Vendor Data (80+ feature data points)
+            distributors: [
+                // (10 base metrics + 8 detail metrics = 18 features per distributor)
+                { name: "GlobalTech Solutions", calls: 450, techPct: 55, sentiment: 0.1, riskScore: 25, csat: 3.8, escRate: 12.5, scoreType: "critical", tier: "platinum", contract: "active", product: "cloud", history: ["Issue #1234 (Tech/Critical)", "Issue #1235 (Business/Warning)"], nonTechPct: 45, avgAHT: 9.1, failedAudits: 2, lastActivity: "2023-10-25" },
+                { name: "Apex Distributors", calls: 320, techPct: 20, sentiment: -0.4, riskScore: 45, csat: 4.2, escRate: 5.1, scoreType: "warning", tier: "gold", contract: "renewal", product: "saas", history: ["Issue #1236 (Business/Warning)", "Issue #1237 (Tech/Low)"], nonTechPct: 80, avgAHT: 7.5, failedAudits: 0, lastActivity: "2023-10-24" },
+                { name: "Innovate Partners", calls: 180, techPct: 10, sentiment: 0.7, riskScore: 88, csat: 4.9, escRate: 1.2, scoreType: "low", tier: "silver", contract: "active", product: "hardware", history: ["Issue #1238 (Business/Low)"], nonTechPct: 90, avgAHT: 6.8, failedAudits: 0, lastActivity: "2023-10-26" },
+                { name: "Zenith Services", calls: 210, techPct: 75, sentiment: 0.2, riskScore: 15, csat: 2.1, escRate: 25.0, scoreType: "critical", tier: "platinum", contract: "pending", product: "cloud", history: ["Issue #1239 (Tech/Critical)", "Issue #1240 (Tech/Critical)"], nonTechPct: 25, avgAHT: 11.2, failedAudits: 5, lastActivity: "2023-10-25" },
+                { name: "DistriCo Logistics", calls: 80, techPct: 40, sentiment: 0.6, riskScore: 65, csat: 4.5, escRate: 3.5, scoreType: "low", tier: "gold", contract: "active", product: "saas", history: ["Issue #1241 (Business/Low)", "Issue #1242 (Tech/Warning)"], nonTechPct: 60, avgAHT: 8.0, failedAudits: 1, lastActivity: "2023-10-23" },
+            ]
+        };
+
+        let distributorsMap = new Map();
+        mockData.distributors.forEach(d => distributorsMap.set(d.name, d));
+
+
+        // --- CORE UI ANIMATIONS & POPULATION ---
+
+        function animateCounter(id, endValue) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            let startValue = 0;
+            const duration = 1500;
+            const range = endValue - startValue;
+            let current = startValue;
+            const increment = range / (duration / 10);
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= endValue) {
+                    clearInterval(timer);
+                    current = endValue;
+                }
+                if (id === 'aht' || id === 'resTime' || id === 'churnRate') {
+                    element.textContent = (Math.round(current * 10) / 10).toFixed(1) + (id === 'churnRate' ? '%' : '');
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 10);
+        }
+
+        function getScoreColor(score) {
+            if (score <= 30) return 'text-alert bg-alert/20 border-alert';
+            if (score <= 60) return 'text-warning bg-warning/20 border-warning';
+            return 'text-accent bg-accent/20 border-accent';
+        }
+        
+        // --- DISTRIBUTOR TABLE POPULATION & CLICK HANDLER ---
+
+        function populateDistributors(data) {
+            const tbody = document.getElementById("distributorTableBody");
+            tbody.innerHTML = '';
+            
+            data.forEach(dist => {
+                const scoreClasses = getScoreColor(dist.riskScore);
+                const sentimentIcon = dist.sentiment < -0.3 ? 'frown' : dist.sentiment > 0.3 ? 'smile' : 'meh';
+                
+                const row = document.createElement("tr");
+                row.className = "hover:bg-gray-700 transition duration-150 cursor-pointer";
+                row.setAttribute('onclick', `showDistributorDetails('${dist.name}')`);
+
+                row.innerHTML = `
+                    <td class="px-4 py-3 whitespace-nowrap font-medium text-white flex items-center">
+                        <i data-lucide="award" class="w-4 h-4 mr-2 text-primary"></i> ${dist.name}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-400">${dist.calls}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-400">
+                        <div class="w-20 h-2 rounded-full bg-gray-600 overflow-hidden">
+                            <div class="h-full ${dist.techPct > 50 ? 'bg-red-500' : 'bg-green-500'}" style="width: ${dist.techPct}%;"></div>
+                        </div>
+                        <span class="text-xs ml-1">${dist.techPct}%</span>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-400">
+                        <i data-lucide="${sentimentIcon}" class="w-5 h-5 inline-block mr-1 ${dist.sentiment < 0 ? 'text-red-500' : 'text-green-500'}"></i>
+                        ${dist.sentiment.toFixed(2)}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-400">${dist.csat.toFixed(1)}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-400">${dist.escRate.toFixed(1)}%</td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border ${scoreClasses}">
+                            ${dist.riskScore}
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            lucide.createIcons();
+        }
+
+        // --- MODAL LOGIC (NEW) ---
+
+        function showDistributorDetails(distributorName) {
+            const dist = distributorsMap.get(distributorName);
+            if (!dist) return console.error("Distributor not found:", distributorName);
+
+            // Update Modal Title
+            document.getElementById('modalTitle').textContent = `Distributor Detail: ${dist.name}`;
+            
+            // Update Top Statuses
+            document.getElementById('modalRiskScore').textContent = dist.riskScore;
+            document.getElementById('modalRiskScore').className = `text-3xl font-extrabold mt-1 ${getScoreColor(dist.riskScore).split(' ')[0]}`; // Apply color class
+            document.getElementById('modalTotalCalls').textContent = dist.calls;
+            document.getElementById('modalCSAT').textContent = dist.csat.toFixed(1);
+            document.getElementById('modalNonTech').textContent = `${dist.nonTechPct}%`;
+
+            // Update Performance Breakdown
+            document.getElementById('modalTier').textContent = dist.tier.charAt(0).toUpperCase() + dist.tier.slice(1);
+            document.getElementById('modalContract').textContent = dist.contract.charAt(0).toUpperCase() + dist.contract.slice(1);
+            document.getElementById('modalSentiment').textContent = dist.sentiment.toFixed(2);
+            document.getElementById('modalSentiment').classList.remove('text-red-500', 'text-green-500');
+            document.getElementById('modalSentiment').classList.add(dist.sentiment < 0 ? 'text-alert' : 'text-accent');
+            document.getElementById('modalProduct').textContent = dist.product.charAt(0).toUpperCase() + dist.product.slice(1);
+            document.getElementById('modalEscalation').textContent = `${dist.escRate.toFixed(1)}%`;
+            document.getElementById('modalAHT').textContent = `${dist.avgAHT.toFixed(1)} min`;
+            document.getElementById('modalAudit').textContent = dist.failedAudits;
+            document.getElementById('modalLastActivity').textContent = dist.lastActivity;
+
+            // Update History List
+            const historyList = document.getElementById('modalHistoryList');
+            historyList.innerHTML = '';
+            dist.history.forEach(item => {
+                const li = document.createElement('li');
+                const isCritical = item.includes('Critical');
+                const itemClass = isCritical ? 'text-alert font-semibold' : 'text-warning';
+                li.innerHTML = `<i data-lucide="chevrons-right" class="w-4 h-4 mr-2 inline-block ${itemClass}"></i><span class="${itemClass}">${item}</span> - <span class="text-gray-400">View Transcript</span>`;
+                historyList.appendChild(li);
+            });
+            
+            lucide.createIcons();
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        // --- SEARCH AND FILTER LOGIC ---
+        function filterDistributors() {
+            const searchText = document.getElementById('distributorSearch').value.toLowerCase();
+            const scoreFilter = document.getElementById('scoreFilter').value;
+            // Add sidebar filters here if needed for full functionality
+
+            const filteredData = mockData.distributors.filter(dist => {
+                const nameMatch = dist.name.toLowerCase().includes(searchText);
+                const scoreMatch = (scoreFilter === 'all' || dist.scoreType === scoreFilter);
+                
+                // Also check if the search text matches issue/score for advanced search
+                const issueScoreMatch = searchText === '' || 
+                                        (dist.scoreType.toLowerCase().includes(searchText)) ||
+                                        (dist.riskScore.toString().includes(searchText));
+
+                return (nameMatch || issueScoreMatch) && scoreMatch;
+            });
+
+            populateDistributors(filteredData);
+        }
+
+        // --- CHATBOT LOGIC (kept simple as per context, no API call) ---
+        function toggleChatbot() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatToggleButton');
+            chatWindow.classList.toggle('hidden');
+            chatButton.classList.toggle('animate-bounce');
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function appendMessage(text, sender) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-bubble ${sender === 'user' ? 'user-bubble self-end' : 'ai-bubble self-start'}`;
+            messageElement.textContent = text;
+            messagesDiv.appendChild(messageElement);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function processQuery(query) {
+            const lowerQuery = query.toLowerCase();
+            
+            // 1. Check for specific distributor query
+            for (const dist of mockData.distributors) {
+                const distNameLower = dist.name.toLowerCase();
+                if (lowerQuery.includes(distNameLower)) {
+                    const status = dist.riskScore <= 30 ? 'CRITICAL URGENCY' : dist.riskScore <= 60 ? 'WARNING' : 'NORMAL';
+                    const urgency = dist.techPct > 50 ? 'High Technical Focus' : 'Low Technical Focus';
+                    const response = `${dist.name} Summary:\n- Status: ${status} Risk (${dist.riskScore})\n- Urgency: ${urgency}\n- CSAT: ${dist.csat.toFixed(1)}\n- Esc. Rate: ${dist.escRate.toFixed(1)}%`;
+                    return response;
+                }
+            }
+
+            // 2. Check for general metrics
+            if (lowerQuery.includes("total calls") || lowerQuery.includes("volume")) {
+                return `The system has processed a total of ${mockData.totalCalls} calls this period.`;
+            }
+            if (lowerQuery.includes("urgency") || lowerQuery.includes("critical")) {
+                return `We currently have ${mockData.techIssues} high-risk technical issues requiring immediate escalation.`;
+            }
+
+            // 3. Default response
+            return "I couldn't find specific data for that query. Try asking about a distributor (e.g., 'score for Apex') or a metric (e.g., 'total calls').";
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            appendMessage(query, 'user');
+            input.value = '';
+
+            // Simulate AI response delay
+            setTimeout(() => {
+                const response = processQuery(query);
+                appendMessage(response, 'ai');
+            }, 500);
+        }
+
+        // --- MAIN INITIALIZATION ---
+        window.onload = function() {
+            // Initialize lucide icons
+            lucide.createIcons();
+
+            // Populate dynamic lists (reused from old dashboard)
+            populateCalls(); // recent calls
+            populateAlerts(); // alerts
+            
+            // Populate the main Distributor table
+            populateDistributors(mockData.distributors);
+
+            // Start counter animations for aggregate stats
+            animateCounter("totalCalls", mockData.totalCalls);
+            animateCounter("techIssues", mockData.techIssues);
+            animateCounter("businessIssues", mockData.businessIssues);
+            animateCounter("trustScore", mockData.trustScoreValue);
+            animateCounter("aht", mockData.aht);
+            animateCounter("resTime", mockData.resTime);
+            animateCounter("failedEsc", mockData.failedEsc);
+            animateCounter("churnRate", mockData.churnRate);
+
+            // Mock functionality for the connect button (No alert())
+            document.getElementById('connectBtn').onclick = () => {
+                const btn = document.getElementById('connectBtn');
+                btn.textContent = 'Connecting...';
+                setTimeout(() => {
+                    btn.innerHTML = '<i data-lucide="activity" class="w-4 h-4 mr-1"></i> Live Connected';
+                    btn.classList.remove('bg-accent', 'hover:bg-emerald-300');
+                    btn.classList.add('bg-green-500', 'hover:bg-green-600');
+                    lucide.createIcons();
+                    console.log('Successfully connected to live stream.');
+                }, 1000);
+            };
+        };
+
+        // Reused helpers for Alerts and Recent Calls display
+        function populateCalls() {
+            const ul = document.getElementById("recentCalls");
+            ul.innerHTML = '';
+            mockData.recentCalls.forEach(call => {
+                const li = document.createElement("li");
+                li.className = `flex items-center p-2 rounded-lg hover:bg-gray-700 transition duration-150 text-sm border-l-2 ${call.color === 'text-alert' ? 'border-alert' : 'border-warning'}`;
+                li.innerHTML = `
+                    <span class="font-bold mr-2 w-12 text-gray-300">#${call.id}</span>
+                    <span class="text-gray-400 flex-grow">${call.summary}</span>
+                `;
+                ul.appendChild(li);
+            });
+        }
+
+        function populateAlerts() {
+            const ul = document.getElementById("alerts");
+            ul.innerHTML = '';
+            mockData.alerts.forEach(alert => {
+                const icon = alert.type === 'tech' ? 'zap' : 'refresh-cw';
+                const color = alert.type === 'tech' ? 'text-alert bg-alert/10' : 'text-warning bg-warning/10';
+
+                const li = document.createElement("li");
+                li.className = `flex items-start p-3 rounded-lg border-l-4 border-alert shadow-md ${color}`;
+                li.innerHTML = `
+                    <i data-lucide="${icon}" class="w-5 h-5 mt-0.5 mr-3 flex-shrink-0"></i>
+                    <p class="text-sm text-gray-200">${alert.text}</p>
+                `;
+                ul.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
